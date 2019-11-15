@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Discover</h1>
+    <a class='btn' (click) = 'step1()'>{{ btnText }}</a>
+    <div class='fadeINs' *ngIf="steps[0]" >    
+        <p>Which one of these photos do you like?</p>
+        <ul *ngIf="images; else loading">
+            <li *ngFor="let image of images">
+                <!-- change some things once connected to endpoint -->
+                <img src="{{ image.url }}" (click) = 'step2(image)'>
+            </li>
+        </ul>
+        <ng-template #loading>
+                <div class="loader"></div>
+        </ng-template>
+    </div>
+     <!-- idea: improve scalablility using ng-container -->
+    <div class="fadeIn" *ngIf="steps[1]">
+        <!-- change some things once connected to endpoint -->
+        <h1>You chose this image</h1>
+        <img class="selectedImg" src='{{ selectedImg.url }}'>
+    </div>
+</div>
