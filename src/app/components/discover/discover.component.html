@@ -1,22 +1,55 @@
 <div class="container">
     <h1>Discover</h1>
     <a class='btn' (click) = 'step1()'>{{ btnText }}</a>
-    <div class='fadeINs' *ngIf="steps[0]" >    
-        <p>Which one of these photos do you like?</p>
-        <ul *ngIf="images; else loading">
-            <li *ngFor="let image of images">
-                <!-- change some things once connected to endpoint -->
-                <img src="{{ image.url }}" (click) = 'step2(image)'>
-            </li>
-        </ul>
-        <ng-template #loading>
-                <div class="loader"></div>
-        </ng-template>
+    <div *ngIf="steps[0]; else warn">
+        <div class='fadeIn' *ngIf="!steps[1]">
+                <p>Which one of these places seems like one you'd like to visit?</p>
+                <ul *ngIf="images; else loading">
+                    <li *ngFor="let image of images">
+                        <img src="{{ image.urls.small }}" (click) = 'step2(image)'>
+                    </li>
+                </ul>
+                <a class='btn btn-gray' (click) = 'getPictures()'>More</a>
+                <div class="credit">
+                    <p>credits</p>
+                    <ol>
+                        <li *ngFor="let image of images; let i = index"><a href="{{ image.links.html }}">(photo {{ i+1 }})</a> by <a href="{{ image.user.links.html }}">{{ image.user.name }}</a></li>
+                    </ol>
+                </div>
+                <ng-template #loading>
+                        <div class="loader"></div>
+                </ng-template>
+        </div>    
     </div>
+    <ng-template #warn>
+        <div style="color: lightgray">
+                <h3>Note</h3>
+                <p class='small'>These images are randomly pulled from unsplash.com, a trusted source of high quality free stock photos. Most images are reliable, but we apologize if some images are unrelated to what you are looking for.</p>    
+        </div>
+    </ng-template>
      <!-- idea: improve scalablility using ng-container -->
-    <div class="fadeIn" *ngIf="steps[1]">
+    <div class="fadeIn" *ngIf="steps[1] && !steps[2]">
         <!-- change some things once connected to endpoint -->
         <h1>You chose this image</h1>
-        <img class="selectedImg" src='{{ selectedImg.url }}'>
+        <img class="mediumImg" src="{{ selectedImg['urls'].regular }}">
+        <p>Can you guess which state this is in?</p>
+        <ul class="fadeIn" *ngIf="states.length >= numStates; else loading">
+            <li *ngFor='let state of states'><a class='btn btn-gray' (click) = 'chooseState(state, $event)'>{{ state }}</a></li>
+        </ul>
+        <ng-template #loading>
+                        <div class="loader"></div>
+        </ng-template>
+    </div>
+    <div class="fadeIn" *ngIf="steps[2]">
+    <h1>That's right, this picture is from {{ _states.abbrState(selectedImgLocation.results[0].address_components.state, 'name') }}</h1>
+    <img class="smallImg" src="{{ selectedImg['urls'].regular }}">
+    <h4>Is this your next vacation spot?</h4>
+    <p>It's at {{ selectedImgLocation.results[0].formatted_address }}</p>
+    <ul>
+        <li><a class="btn" target="_blank" href="https://www.google.com/maps/place/{{ selectedImgLocation.results[0].formatted_address }}">Take me there</a></li>
+        <li><a class="btn btn-gray" target="_blank" href="https://www.google.com/maps/search/Hotels in {{ selectedImgLocation.results[0].formatted_address }}">Hotels nearby</a></li>
+        <li><a class="btn btn-gray">Save this spot</a></li>
+        <li><a class="btn btn-gray" (click) = "restart()">Find Another Picture</a></li>
+    </ul>
     </div>
 </div>
