@@ -10,7 +10,7 @@ We've all been there. Scrolling through bulky travel sites and obscure blog post
 ---
 
 ### (Instructions)
-After cloning, create a `app-env.ts` file in the `src/` directory. It needs to contain two free public api keys from unsplash.com and geocode.io in order to work.
+After cloning, create a `app-env.ts` file in the `src/` directory. It needs to contain two free public api keys from [unsplash.com](https://unsplash.com/developers) and [geocod.io](https://geocod.io) in order to work.
 
 ```
 //inside src/app-env.ts
