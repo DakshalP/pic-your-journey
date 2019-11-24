@@ -2,26 +2,18 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.
 
-## Development server
+## Stumped on where to go?
+We've all been there. Scrolling through bulky travel sites and obscure blog posts to find our next destination. While using the Pic Your Journey app, however, you don't have to worry about any of that hassle. Find your next destination, just by scrolling through beautiful pictures.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**Created as a project to learn Angular**
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### (Instructions)
+After cloning, create a `app-env.ts` file in the `src/` directory. It needs to contain two free public api keys from unsplash.com and geocode.io in order to work.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+//inside src/app-env.ts
+export var unsplashKey: string = 'YOUR_KEY'
+export var gecodeKey: string = 'YOUR_KEY'
+```
