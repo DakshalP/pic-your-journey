@@ -1,11 +1,11 @@
-# pic-your-journey
+# Pic Your Journey
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.
+Stumped on where to go? 
 
-## Stumped on where to go?
 We've all been there. Scrolling through bulky travel sites and obscure blog posts to find our next destination. While using the Pic Your Journey app, however, you don't have to worry about any of that hassle. Find your next destination, just by scrolling through beautiful pictures.
 
 **Created as a project to learn Angular**
+(This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.)
 
 ---
 
